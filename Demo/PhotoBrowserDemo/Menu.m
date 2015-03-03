@@ -231,18 +231,25 @@
         if(indexPath.row == 1) // Photos from Flickr
         {
             browser.displayCounterLabel = YES;
-            browser.displayActionButton = NO;
+            //browser.displayActionButton = NO;
+            browser.useWhiteBackgroundColor=YES;
+
+            browser.trackTintColor  = [UIColor colorWithWhite:0.8 alpha:1];
+            //for the share button color
+            browser.view.tintColor= [UIColor redColor];
+            browser.progressTintColor = [UIColor redColor];
         }
         else if(indexPath.row == 2) // Photos from Flickr - Custom
         {
-            browser.actionButtonTitles      = @[@"Option 1", @"Option 2", @"Option 3", @"Option 4"];
+            //browser.actionButtonTitles      = @[@"Option 1", @"Option 2", @"Option 3", @"Option 4"];
             browser.displayCounterLabel     = YES;
             browser.useWhiteBackgroundColor = YES;
-            browser.leftArrowImage          = [UIImage imageNamed:@"IDMPhotoBrowser_customArrowLeft.png"];
-            browser.rightArrowImage         = [UIImage imageNamed:@"IDMPhotoBrowser_customArrowRight.png"];
-            browser.leftArrowSelectedImage  = [UIImage imageNamed:@"IDMPhotoBrowser_customArrowLeftSelected.png"];
-            browser.rightArrowSelectedImage = [UIImage imageNamed:@"IDMPhotoBrowser_customArrowRightSelected.png"];
-            browser.doneButtonImage         = [UIImage imageNamed:@"IDMPhotoBrowser_customDoneButton.png"];
+//            browser.leftArrowImage          = [UIImage imageNamed:@"IDMPhotoBrowser_customArrowLeft.png"];
+//            browser.rightArrowImage         = [UIImage imageNamed:@"IDMPhotoBrowser_customArrowRight.png"];
+//            browser.leftArrowSelectedImage  = [UIImage imageNamed:@"IDMPhotoBrowser_customArrowLeftSelected.png"];
+//            browser.rightArrowSelectedImage = [UIImage imageNamed:@"IDMPhotoBrowser_customArrowRightSelected.png"];
+//            browser.doneButtonImage         = [UIImage imageNamed:@"IDMPhotoBrowser_customDoneButton.png"];
+            
             browser.view.tintColor          = [UIColor orangeColor];
             browser.progressTintColor       = [UIColor orangeColor];
             browser.trackTintColor          = [UIColor colorWithWhite:0.8 alpha:1];
