@@ -113,8 +113,14 @@
             [_progressView removeFromSuperview];
             
             // Set image
-			_photoImageView.image = img;
-			_photoImageView.hidden = NO;
+            [UIView transitionWithView:self.photoImageView
+                              duration:0.3f
+                               options:UIViewAnimationOptionTransitionCrossDissolve
+                            animations:^{
+                                _photoImageView.image = img;
+                                _photoImageView.hidden = NO;
+                            } completion:nil];
+			
             
             // Setup photo frame
 			CGRect photoImageViewFrame;

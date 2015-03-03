@@ -135,34 +135,61 @@ caption = _caption;
             // Load async from file
             [self performSelectorInBackground:@selector(loadImageFromFileAsync) withObject:nil];
         } else if (_photoURL) {
-            // Load async from web (using AFNetworking)
+            // Load async from web
             NSURLRequest *request = [[NSURLRequest alloc] initWithURL:_photoURL
                                                           cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                                       timeoutInterval:0];
             
-            AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-            op.responseSerializer = [AFImageResponseSerializer serializer];
-
-            [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                UIImage *image = responseObject;
-                self.underlyingImage = image;
-                [self performSelectorOnMainThread:@selector(imageLoadingComplete) withObject:nil waitUntilDone:NO];
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) { }];
+            //NSURL Session
+            NSURLSessionConfiguration *sessionConfig =[NSURLSessionConfiguration defaultSessionConfiguration];
+            NSURLSession *session =[NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+            NSURLSessionDownloadTask *getImageTask=[session downloadTaskWithRequest:request];
             
-            [op setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-                CGFloat progress = ((CGFloat)totalBytesRead)/((CGFloat)totalBytesExpectedToRead);
-                if (self.progressUpdateBlock) {
-                    self.progressUpdateBlock(progress);
-                }
-            }];
+            [getImageTask resume];
             
-            [[NSOperationQueue mainQueue] addOperation:op];
+//            //AFNetworking
+//            AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//            op.responseSerializer = [AFImageResponseSerializer serializer];
+//
+//            [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                
+//                UIImage *image = responseObject;
+//                self.underlyingImage = image;
+//                [self performSelectorOnMainThread:@selector(imageLoadingComplete) withObject:nil waitUntilDone:NO];
+//                
+//            } failure:^(AFHTTPRequestOperation *operation, NSError *error) { }];
+//            
+//            [op setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+//                
+//                CGFloat progress = ((CGFloat)totalBytesRead)/((CGFloat)totalBytesExpectedToRead);
+//                if (self.progressUpdateBlock) {
+//                    self.progressUpdateBlock(progress);
+//                }
+//            }];
+//            
+//            [[NSOperationQueue mainQueue] addOperation:op];
         } else {
             // Failed - no source
             self.underlyingImage = nil;
             [self imageLoadingComplete];
         }
     }
+}
+
+//NSURL networking delegate methods
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite{
+    
+    CGFloat progress = ((CGFloat)totalBytesWritten)/((CGFloat)totalBytesExpectedToWrite);
+    
+    if (self.progressUpdateBlock) {
+        self.progressUpdateBlock(progress);
+    }
+}
+
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location{
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+    self.underlyingImage = image;
+    [self performSelectorOnMainThread:@selector(imageLoadingComplete) withObject:nil waitUntilDone:NO];
 }
 
 // Release if we can get it again from path or url

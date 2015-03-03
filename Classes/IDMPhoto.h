@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "IDMPhotoProtocol.h"
-#import "AFNetworking.h"
+//#import "AFNetworking.h"
 
 // This class models a photo/image and it's caption
 // If you want to handle photos, caching, decompression
 // yourself then you can simply ensure your custom data model
 // conforms to IDMPhotoProtocol
-@interface IDMPhoto : NSObject <IDMPhoto>
+@interface IDMPhoto : NSObject <IDMPhoto,NSURLSessionDownloadDelegate>
 
 // Progress download block, used to update the circularView
 typedef void (^IDMProgressUpdateBlock)(CGFloat progress);
