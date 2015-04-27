@@ -128,6 +128,11 @@ If the presenting view controller doesn't have a status bar, in some cases you c
     browser.forceHideStatusBar = YES;
 ```
 
+It's possible to disable the vertical dismiss swipe gesture:
+``` objective-c
+    browser.disableVerticalSwipe = YES;
+```
+
 ### Photo Captions
 
 Photo captions can be displayed simply by setting the `caption` property on specific photos:
@@ -163,13 +168,11 @@ Just add `pod 'IDMPhotoBrowser'` to your Podfile.
 
 ### Including Source Directly Into Your Project
 
-Simply add the files inside `IDMPhotoBrowser/Classes` to your Xcode project, copying them to your project's directory if required. And also any library inside `IDMPhotoBrowser/ExternalLibraries` needed.
-
-### Opensource libraries used
+#### Opensource libraries used
 
 - [AFNetWorking](https://github.com/AFNetworking/AFNetworking)
 - [DACircularProgress](https://github.com/danielamitay/DACircularProgress)
-- [SVProgressHUD](https://github.com/samvermette/SVProgressHUD)
+- [pop](https://github.com/facebook/pop)
 
 ## Licence
 
