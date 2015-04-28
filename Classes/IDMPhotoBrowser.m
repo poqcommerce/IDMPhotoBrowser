@@ -130,7 +130,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 @implementation IDMPhotoBrowser
 
 // Properties
-@synthesize displayDoneButton = _displayDoneButton, displayToolbar = _displayToolbar, displayActionButton = _displayActionButton, displayCounterLabel = _displayCounterLabel, useWhiteBackgroundColor = _useWhiteBackgroundColor, doneButtonImage = _doneButtonImage;
+@synthesize displayDoneButton = _displayDoneButton, displayToolbar = _displayToolbar, displayActionButton = _displayActionButton, displayCounterLabel = _displayCounterLabel, useWhiteBackgroundColor = _useWhiteBackgroundColor, doneButtonImage = _doneButtonImage,counterLabelFont=_counterLabelFont,doneButtonFrame=_doneButtonFrame;
 @synthesize leftArrowImage = _leftArrowImage, rightArrowImage = _rightArrowImage, leftArrowSelectedImage = _leftArrowSelectedImage, rightArrowSelectedImage = _rightArrowSelectedImage;
 @synthesize displayArrowButton = _displayArrowButton, actionButtonTitles = _actionButtonTitles;
 @synthesize arrowButtonsChangePhotosAnimated = _arrowButtonsChangePhotosAnimated;
@@ -159,7 +159,10 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
         _autoHide = YES;
         
         _displayDoneButton = YES;
+        _counterLabelFont = nil;
+        
         _doneButtonImage = nil;
+        _doneButtonFrame = CGRectMake(0, 25, 44, 44);
         
         _displayToolbar = YES;
         _displayActionButton = YES;
@@ -190,7 +193,6 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
 		{
 			self.modalPresentationStyle = UIModalPresentationCustom;
-			self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             self.modalPresentationCapturesStatusBarAppearance = YES;
 		}
 		else
@@ -198,7 +200,6 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 			_applicationTopViewController = [self topviewController];
 			_previousModalPresentationStyle = _applicationTopViewController.modalPresentationStyle;
 			_applicationTopViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
-			self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 		}
 		
 		self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -622,8 +623,13 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     _counterLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 95, 40)];
     _counterLabel.textAlignment = NSTextAlignmentCenter;
     _counterLabel.backgroundColor = [UIColor clearColor];
-    _counterLabel.font = [UIFont fontWithName:@"Helvetica" size:17];
     
+    if (!_counterLabelFont) {
+        _counterLabel.font = [UIFont fontWithName:@"Helvetica" size:17];
+    }
+    else{
+        _counterLabel.font = _counterLabelFont;
+    }
     if(_useWhiteBackgroundColor == NO) {
         _counterLabel.textColor = [UIColor whiteColor];
         _counterLabel.shadowColor = [UIColor darkTextColor];
@@ -1073,12 +1079,12 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 }
 
 - (CGRect)frameForDoneButtonAtOrientation:(UIInterfaceOrientation)orientation {
-    CGRect screenBound = self.view.bounds;
-    CGFloat screenWidth = screenBound.size.width;
+//    CGRect screenBound = self.view.bounds;
+//    CGFloat screenWidth = screenBound.size.width;
     
     // if ([self isLandscape:orientation]) screenWidth = screenBound.size.height;
     
-    return CGRectMake(screenWidth - 75, 30, 55, 26);
+    return _doneButtonFrame;
 }
 
 - (CGRect)frameForCaptionView:(IDMCaptionView *)captionView atIndex:(NSUInteger)index {
