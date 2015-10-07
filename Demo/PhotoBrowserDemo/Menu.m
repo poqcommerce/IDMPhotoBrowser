@@ -231,12 +231,13 @@
         if(indexPath.row == 1) // Photos from Flickr
         {
             browser.displayCounterLabel = YES;
-            //browser.displayActionButton = NO;
+            browser.displayActionButton = YES;
+            browser.shareButtonImage  = [UIImage imageNamed:@"btn-share"];
             browser.useWhiteBackgroundColor=YES;
 
             browser.trackTintColor  = [UIColor colorWithWhite:0.8 alpha:1];
             //for the share button color
-            browser.view.tintColor= [UIColor redColor];
+            browser.view.tintColor= [UIColor blackColor];
             browser.progressTintColor = [UIColor redColor];
         }
         else if(indexPath.row == 2) // Photos from Flickr - Custom

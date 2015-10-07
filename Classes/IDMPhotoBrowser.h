@@ -46,7 +46,8 @@
 //CGRectMake(0,25,44,44)
 @property (nonatomic) CGRect doneButtonFrame;
 @property (nonatomic) BOOL useWhiteBackgroundColor;
-@property (nonatomic, weak) UIImage *doneButtonImage;
+@property (nonatomic, weak) UIView *doneButtonImage;
+@property (nonatomic, weak) UIImage *shareButtonImage;
 @property (nonatomic, weak) UIColor *trackTintColor, *progressTintColor;
 
 @property (nonatomic, weak) UIImage *scaleImage;
