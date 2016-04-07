@@ -381,7 +381,6 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     _pagingScrollView.alpha = 0.0f;
     
     UIImage *imageFromView = _scaleImage ? _scaleImage : [self getImageFromView:_senderViewForAnimation];
-    imageFromView = [self rotateImageToCurrentOrientation:imageFromView];
     
     _senderViewOriginalFrame = [_senderViewForAnimation.superview convertRect:_senderViewForAnimation.frame toView:nil];
     
