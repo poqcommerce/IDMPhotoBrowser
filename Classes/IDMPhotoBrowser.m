@@ -656,8 +656,10 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
                                                                   target:self
                                                                   action:@selector(actionButtonPressed:)];
     if (_shareButtonImage) {
-        _actionButton = [[UIBarButtonItem alloc] initWithCustomView:_shareButtonImage];
+//         _actionButton = [[UIBarButtonItem alloc] initWithCustomView:_shareButtonImage];
+        _actionButton = [[UIBarButtonItem alloc] initWithImage:_shareButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(actionButtonPressed:)];
     }
+    
     //[[UIBarButtonItem alloc] initWithImage:_shareButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(actionButtonPressed:)];
     
     // Gesture
