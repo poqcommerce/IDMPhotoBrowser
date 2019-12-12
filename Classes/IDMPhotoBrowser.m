@@ -21,6 +21,8 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
 // Private
 @interface IDMPhotoBrowser () {
+    UIBarButtonItem  *_previousButton, *_nextButton, *_actionButton, *_counterButton;
+    UILabel *_counterLabel;
     // Data
     NSMutableArray *_photos;
     
@@ -40,9 +42,6 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     
     // Toolbar
     UIToolbar *_toolbar;
-    UIBarButtonItem *_previousButton, *_nextButton, *_actionButton;
-    UIBarButtonItem *_counterButton;
-    UILabel *_counterLabel;
     
     // Actions
     UIActionSheet *_actionsSheet;
@@ -143,6 +142,8 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 @synthesize actionsSheet = _actionsSheet, activityViewController = _activityViewController;
 @synthesize trackTintColor = _trackTintColor, progressTintColor = _progressTintColor;
 @synthesize delegate = _delegate;
+@synthesize previousButtonAccesibilityLabel = _previousButtonAccesibilityLabel, nextButtonAccesibilityLabel = _nextButtonAccesibilityLabel, actionButtonAccesibilityLabel = _actionButtonAccesibilityLabel, counterLabelAccesibilityLabel = _counterLabelAccesibilityLabel;
+
 
 #pragma mark - NSObject
 
@@ -625,11 +626,11 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     _previousButton = [[UIBarButtonItem alloc] initWithCustomView:[self customToolbarButtonImage:leftButtonImage
                                                                                    imageSelected:leftButtonSelectedImage
                                                                                           action:@selector(gotoPreviousPage)]];
-    
+    [_previousButton setAccessibilityLabel:_previousButtonAccesibilityLabel];
     _nextButton = [[UIBarButtonItem alloc] initWithCustomView:[self customToolbarButtonImage:rightButtonImage
                                                                                imageSelected:rightButtonSelectedImage
                                                                                       action:@selector(gotoNextPage)]];
-    
+    [_nextButton setAccessibilityLabel:_nextButtonAccesibilityLabel];
     // Counter Label
     _counterLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 95, 40)];
     _counterLabel.textAlignment = NSTextAlignmentCenter;
@@ -657,10 +658,12 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                                   target:self
                                                                   action:@selector(actionButtonPressed:)];
+    
     if (_shareButtonImage) {
 //         _actionButton = [[UIBarButtonItem alloc] initWithCustomView:_shareButtonImage];
         _actionButton = [[UIBarButtonItem alloc] initWithImage:_shareButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(actionButtonPressed:)];
     }
+    [_actionButton setAccessibilityLabel:_actionButtonAccesibilityLabel];
     
     //[[UIBarButtonItem alloc] initWithImage:_shareButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(actionButtonPressed:)];
     
@@ -1155,6 +1158,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     // Counter
     if ([self numberOfPhotos] > 1) {
         _counterLabel.text = [NSString stringWithFormat:@"%lu %@ %lu", (unsigned long)(_currentPageIndex+1), IDMPhotoBrowserLocalizedStrings(@"of"), (unsigned long)[self numberOfPhotos]];
+        [_counterLabel setAccessibilityLabel:_counterLabelAccesibilityLabel];
     } else {
         _counterLabel.text = nil;
     }

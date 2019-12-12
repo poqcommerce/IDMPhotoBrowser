@@ -36,6 +36,7 @@
 @property (nonatomic) BOOL displayCounterLabel;
 @property (nonatomic, weak) UIFont *counterLabelFont;
 
+@property (nonatomic, strong) NSString *previousButtonAccesibilityLabel, *nextButtonAccesibilityLabel, *actionButtonAccesibilityLabel, *counterButtonAccesibilityLabel, *counterLabelAccesibilityLabel;
 @property (nonatomic) BOOL displayArrowButton;
 @property (nonatomic) BOOL displayActionButton;
 @property (nonatomic, strong) NSArray *actionButtonTitles;
@@ -44,6 +45,7 @@
 
 // View customization
 @property (nonatomic) BOOL displayDoneButton;
+@property (nonatomic) BOOL disableControlVisibilityTimer;
 //CGRectMake(0,25,44,44)
 @property (nonatomic) CGRect doneButtonFrame;
 @property (nonatomic) BOOL useWhiteBackgroundColor;
@@ -52,7 +54,6 @@
 @property (nonatomic, weak) UIColor *trackTintColor, *progressTintColor;
 
 @property (nonatomic, weak) UIImage *scaleImage;
-@property (nonatomic) BOOL disableControlVisibilityTimer;
 @property (nonatomic) BOOL arrowButtonsChangePhotosAnimated;
 
 @property (nonatomic) BOOL forceHideStatusBar;
