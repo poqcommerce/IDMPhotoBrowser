@@ -21,8 +21,8 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
 // Private
 @interface IDMPhotoBrowser () {
-    UIBarButtonItem  *_previousButton, *_nextButton, *_actionButton, *_counterButton, *_counterLabel;
-    
+    UIBarButtonItem  *_previousButton, *_nextButton, *_actionButton, *_counterButton;
+    UILabel *_counterLabel;
     // Data
     NSMutableArray *_photos;
     
