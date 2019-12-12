@@ -40,9 +40,6 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     
     // Toolbar
     UIToolbar *_toolbar;
-    UIBarButtonItem *_previousButton, *_nextButton, *_actionButton;
-    UIBarButtonItem *_counterButton;
-    UILabel *_counterLabel;
     
     // Actions
     UIActionSheet *_actionsSheet;
@@ -143,6 +140,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 @synthesize actionsSheet = _actionsSheet, activityViewController = _activityViewController;
 @synthesize trackTintColor = _trackTintColor, progressTintColor = _progressTintColor;
 @synthesize delegate = _delegate;
+@synthesize previousButton = _previousButton, nextButton = _nextButton, actionButton = _actionButton, counterButton = _counterButton, counterLabel = _counterLabel;
 
 #pragma mark - NSObject
 
