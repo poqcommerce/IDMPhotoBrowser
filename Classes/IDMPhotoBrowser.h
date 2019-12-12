@@ -36,7 +36,7 @@
 @property (nonatomic) BOOL displayCounterLabel;
 @property (nonatomic, weak) UIFont *counterLabelFont;
 
-@property (nonatomic, weak) NSString *previousButtonAccesibilityLabel, *nextButtonAccesibilityLabel, *actionButtonAccesibilityLabel, *counterButtonAccesibilityLabel, *counterLabelAccesibilityLabel;
+@property (nonatomic, strong) NSString *previousButtonAccesibilityLabel, *nextButtonAccesibilityLabel, *actionButtonAccesibilityLabel, *counterButtonAccesibilityLabel, *counterLabelAccesibilityLabel;
 @property (nonatomic) BOOL displayArrowButton;
 @property (nonatomic) BOOL displayActionButton;
 @property (nonatomic, strong) NSArray *actionButtonTitles;
