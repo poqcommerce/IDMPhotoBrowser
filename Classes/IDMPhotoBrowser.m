@@ -21,6 +21,8 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
 // Private
 @interface IDMPhotoBrowser () {
+    UIBarButtonItem  *_previousButton, *_nextButton, *_actionButton, *_counterButton, *_counterLabel;
+    
     // Data
     NSMutableArray *_photos;
     
@@ -140,7 +142,8 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 @synthesize actionsSheet = _actionsSheet, activityViewController = _activityViewController;
 @synthesize trackTintColor = _trackTintColor, progressTintColor = _progressTintColor;
 @synthesize delegate = _delegate;
-@synthesize previousButton = _previousButton, nextButton = _nextButton, actionButton = _actionButton, counterButton = _counterButton, counterLabel = _counterLabel;
+@synthesize previousButtonAccesibilityLabel = _previousButtonAccesibilityLabel, nextButtonAccesibilityLabel = _nextButtonAccesibilityLabel, actionButtonAccesibilityLabel = _actionButtonAccesibilityLabel, counterLabelAccesibilityLabel = _counterLabelAccesibilityLabel;
+
 
 #pragma mark - NSObject
 
@@ -623,15 +626,16 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     _previousButton = [[UIBarButtonItem alloc] initWithCustomView:[self customToolbarButtonImage:leftButtonImage
                                                                                    imageSelected:leftButtonSelectedImage
                                                                                           action:@selector(gotoPreviousPage)]];
-    
+    [_previousButton setAccessibilityLabel:_previousButtonAccesibilityLabel];
     _nextButton = [[UIBarButtonItem alloc] initWithCustomView:[self customToolbarButtonImage:rightButtonImage
                                                                                imageSelected:rightButtonSelectedImage
                                                                                       action:@selector(gotoNextPage)]];
-    
+    [_nextButton setAccessibilityLabel:_nextButtonAccesibilityLabel];
     // Counter Label
     _counterLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 95, 40)];
     _counterLabel.textAlignment = NSTextAlignmentCenter;
     _counterLabel.backgroundColor = [UIColor clearColor];
+    [_counterLabel setAccessibilityLabel:_counterLabelAccesibilityLabel];
     
     if (!_counterLabelFont) {
         _counterLabel.font = [UIFont fontWithName:@"Helvetica" size:17];
@@ -655,6 +659,8 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                                   target:self
                                                                   action:@selector(actionButtonPressed:)];
+    [_actionButton setAccessibilityLabel:_actionButtonAccesibilityLabel];
+    
     if (_shareButtonImage) {
 //         _actionButton = [[UIBarButtonItem alloc] initWithCustomView:_shareButtonImage];
         _actionButton = [[UIBarButtonItem alloc] initWithImage:_shareButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(actionButtonPressed:)];

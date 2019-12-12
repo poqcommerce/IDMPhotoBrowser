@@ -35,8 +35,8 @@
 @property (nonatomic) BOOL displayToolbar;
 @property (nonatomic) BOOL displayCounterLabel;
 @property (nonatomic, weak) UIFont *counterLabelFont;
-@property (nonatomic, weak) UILabel *counterLabel;
 
+@property (nonatomic, weak) NSString *previousButtonAccesibilityLabel, *nextButtonAccesibilityLabel, *actionButtonAccesibilityLabel, *counterButtonAccesibilityLabel, *counterLabelAccesibilityLabel;
 @property (nonatomic) BOOL displayArrowButton;
 @property (nonatomic) BOOL displayActionButton;
 @property (nonatomic, strong) NSArray *actionButtonTitles;
@@ -52,7 +52,6 @@
 @property (nonatomic, weak) UIImage *doneButtonImage;
 @property (nonatomic, weak) UIImage *shareButtonImage;
 @property (nonatomic, weak) UIColor *trackTintColor, *progressTintColor;
-@property (nonatomic, strong) UIBarButtonItem *previousButton, *nextButton, *actionButton, *counterButton;
 
 @property (nonatomic, weak) UIImage *scaleImage;
 @property (nonatomic) BOOL arrowButtonsChangePhotosAnimated;
