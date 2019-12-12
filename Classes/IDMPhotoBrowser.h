@@ -52,7 +52,7 @@
 @property (nonatomic, weak) UIImage *doneButtonImage;
 @property (nonatomic, weak) UIImage *shareButtonImage;
 @property (nonatomic, weak) UIColor *trackTintColor, *progressTintColor;
-@property (nonatomic, weak) UIBarButtonItem *previousButton, *nextButton, *actionButton, *counterButton;
+@property (nonatomic, strong) UIBarButtonItem *previousButton, *nextButton, *actionButton, *counterButton;
 
 @property (nonatomic, weak) UIImage *scaleImage;
 @property (nonatomic) BOOL arrowButtonsChangePhotosAnimated;
