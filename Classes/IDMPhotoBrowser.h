@@ -44,6 +44,7 @@
 
 // View customization
 @property (nonatomic) BOOL displayDoneButton;
+@property (nonatomic) BOOL disableControlVisibilityTimer;
 //CGRectMake(0,25,44,44)
 @property (nonatomic) CGRect doneButtonFrame;
 @property (nonatomic) BOOL useWhiteBackgroundColor;
