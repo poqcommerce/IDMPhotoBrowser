@@ -635,7 +635,6 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     _counterLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 95, 40)];
     _counterLabel.textAlignment = NSTextAlignmentCenter;
     _counterLabel.backgroundColor = [UIColor clearColor];
-    [_counterLabel setAccessibilityLabel:_counterLabelAccesibilityLabel];
     
     if (!_counterLabelFont) {
         _counterLabel.font = [UIFont fontWithName:@"Helvetica" size:17];
@@ -1159,6 +1158,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     // Counter
     if ([self numberOfPhotos] > 1) {
         _counterLabel.text = [NSString stringWithFormat:@"%lu %@ %lu", (unsigned long)(_currentPageIndex+1), IDMPhotoBrowserLocalizedStrings(@"of"), (unsigned long)[self numberOfPhotos]];
+        [_counterLabel setAccessibilityLabel:_counterLabelAccesibilityLabel];
     } else {
         _counterLabel.text = nil;
     }
