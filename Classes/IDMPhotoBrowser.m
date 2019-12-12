@@ -659,12 +659,12 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                                   target:self
                                                                   action:@selector(actionButtonPressed:)];
-    [_actionButton setAccessibilityLabel:_actionButtonAccesibilityLabel];
     
     if (_shareButtonImage) {
 //         _actionButton = [[UIBarButtonItem alloc] initWithCustomView:_shareButtonImage];
         _actionButton = [[UIBarButtonItem alloc] initWithImage:_shareButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(actionButtonPressed:)];
     }
+    [_actionButton setAccessibilityLabel:_actionButtonAccesibilityLabel];
     
     //[[UIBarButtonItem alloc] initWithImage:_shareButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(actionButtonPressed:)];
     
